@@ -16,8 +16,8 @@ tmate_file="tmate.tgz"
 
 # https://github.com/libevent/libevent/archive/release-2.0.21-stable.tar.gz
 libe_version="2.0.21"
-libe_dir="release-${libe_version}-stable"
-libe_file="${libe_dir}.tar.gz"
+libe_dir="libevent-release-${libe_version}-stable"
+libe_file="release-${libe_version}-stable.tar.gz"
 libe_url="https://github.com/libevent/libevent/archive/${libe_file}"
 
 cache_target=${cache}/${tmate_file}
