@@ -39,9 +39,8 @@ if [ ! -f ${cache_target} ]; then
 
   # download tmate
   echo "-----> Downloading tmate..."
-  wget https://github.com/tmate-io/tmate-slave/archive/1.8.tar.gz
-  tar zxf 1.8.tar.gz
-  cd tmate-slave-1.8
+  git clone https://github.com/tmate-io/tmate-slave.git
+  cd tmate-slave
   ./create_keys.sh
   ./autogen.sh && ./configure && make
   cp tmate-slave ${target}/bin/tmate-slave

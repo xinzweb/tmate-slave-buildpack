@@ -6,5 +6,5 @@ applications:
   host: o2_tmate_slave
   domain: cfapps.io
   path: .
-  buildpack: https://github.com/xinzweb/cloudfoundry-tmate-buildpack.git
+  buildpack: https://github.com/xinzweb/tmate-slave-buildpack.git
   command: launch
