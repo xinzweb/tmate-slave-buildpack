@@ -16,10 +16,10 @@ import (
 
 func main() {
 
-  bin := "tmate"
+  bin := "tmate-slave"
   cmd := exec.Command(bin)
 
-  log.Print("Starting tmate...")
+  log.Print("Starting tmate-slave...")
 
   f, err := pty.Start(cmd)
   pty.Setsize(f, 1000, 1000)
@@ -36,13 +36,8 @@ func main() {
   quit := make(chan int)
 
   go func(r io.Reader) {
-    sessionRegex, _ := regexp.Compile(`Remote\ssession\:\sssh\s([^\.]+\.tmate.io)`)
 
-    // select {
-    //   case <- quit:
-    //     log.Print("Stopping tmate")
-    //     return
-    // }
+    //sessionRegex, _ := regexp.Compile(`Remote\ssession\:\sssh\s([^\.]+\.tmate.io)`)
 
     for {
 
@@ -53,11 +48,13 @@ func main() {
         return
       }
 
-      matches := sessionRegex.FindSubmatch(buf)
+      log.Print(string(buf))
 
-      if len(matches) > 0 {
-        log.Print(string(matches[1]))
-      }
+      //matches := sessionRegex.FindSubmatch(buf)
+
+      //if len(matches) > 0 {
+      //  log.Print(string(matches[1]))
+      //}
     }
 
   }(f)

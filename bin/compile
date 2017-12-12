@@ -12,7 +12,7 @@ cache=$2
 #ensure it exists
 mkdir -p ${cache}
 
-tmate_file="tmate.tgz"
+tmate_file="tmate-slave.tgz"
 
 # https://github.com/downloads/libevent/libevent/libevent-2.0.21-stable.tar.gz
 libe_version="2.0.21"
@@ -39,8 +39,12 @@ if [ ! -f ${cache_target} ]; then
 
   # download tmate
   echo "-----> Downloading tmate..."
-  curl -s https://s3.amazonaws.com/tmate-buildpack-assets/tmate > ${target}/bin/tmate
-  chmod +x ${target}/bin/tmate
+  wget https://github.com/tmate-io/tmate-slave/archive/1.8.tar.gz
+  tar zxf 1.8.tar.gz
+  cd tmate-slave-1.8
+  ./create_keys.sh
+  ./autogen.sh && ./configure && make
+  cp tmate-slave ${target}/bin/tmate-slave
 
   # download unbuffer
   echo "-----> Downloading launcher..."
@@ -54,7 +58,7 @@ fi
 mkdir -p ${build_target}
 tar xzf ${cache_target} -C ${build_target}
 
-chmod +x ${build_target}/bin/tmate
+chmod +x ${build_target}/bin/tmate-slave
 chmod +x ${build_target}/bin/launch
 
 mkdir -p $build/.profile.d

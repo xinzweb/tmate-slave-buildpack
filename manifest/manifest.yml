@@ -1,0 +1,10 @@
+---
+applications:
+- name: o2_tmate_slave
+  memory: 256M
+  instances: 1
+  host: o2_tmate_slave
+  domain: cfapps.io
+  path: .
+  buildpack: https://github.com/xinzweb/cloudfoundry-tmate-buildpack.git
+  command: launch
