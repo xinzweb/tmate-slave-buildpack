@@ -1,0 +1,4 @@
+echo "create keys ..."
+. create_keys.sh
+echo "start tmate slave at port $PORT"
+./tmate-slave -p $PORT

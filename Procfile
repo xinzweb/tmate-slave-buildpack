@@ -1,1 +1,1 @@
-web: ./tmate-slave -p $PORT
+web: ./launch
